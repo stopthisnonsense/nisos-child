@@ -1,0 +1,417 @@
+/*
+ Theme Name:     Nisos
+ Theme URI:      https://www.stratacmarketing.com/
+ Description:    Divi Child Theme for Nisos
+ Author:         Sarah Martin
+ Author URI:     https://www.stratacmarketing.com/
+ Template:       Divi
+ Version:        1.0.0
+*/
+
+/* Mobile Menu Collapse Styles CSS */
+
+#main-header .et_mobile_menu .menu-item-has-children > a {
+  background-color: transparent;
+  position: relative;
+}
+
+#main-header .et_mobile_menu .menu-item-has-children > a:after {
+  font-family: 'ETmodules';
+  text-align: center;
+  speak: none;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  -webkit-font-smoothing: antialiased;
+  position: absolute;
+}
+#main-header .et_mobile_menu .menu-item-has-children > a:after {
+  font-size: 16px;
+  content: '\33';
+  top: 13px;
+  right: 10px;
+}
+#main-header .et_mobile_menu .menu-item-has-children.visible > a:after {
+  transform: rotate(180deg);
+}
+#main-header .et_mobile_menu ul.sub-menu {
+  display: none !important;
+  visibility: hidden !important;
+  transition: all 1.5s ease-in-out;
+}
+#main-header .et_mobile_menu .visible > ul.sub-menu {
+  display: block !important;
+  visibility: visible !important;
+}
+
+
+/* Header styles */
+#top-menu li.current-menu-ancestor > a, #top-menu li.current-menu-item > a{
+  color: #046176 !important;
+}
+
+
+#top-menu .sub-menu:before{
+      content: "";
+  height: 7px;
+  width: 100%;
+  background: linear-gradient(90deg, rgba(120,1,22,1) 0%, rgba(242,84,48,1) 100%);
+  z-index: 2;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-shadow: 0 3px 3px rgba(0,0,0,.3);
+}
+
+#top-menu .sub-menu{
+border-top: none;
+}
+
+
+#top-menu  li a{
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 1.3;
+}
+
+#top-menu  li a:hover{
+  color: #f25430;
+  letter-spacing: 0;
+}
+
+/* Regular dropdowns */
+#top-menu .sub-menu li a{
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 1.3;
+}
+
+#top-menu .sub-menu li a:hover{
+  letter-spacing: 0;
+  background-color: transparent;
+}
+
+/* Mega Menu Styles */
+
+.tippy-popper{
+box-shadow: 0 5px 5px rgba(0,0,0,.2);
+}
+
+.tippy-popper:before{
+      content: "";
+  height: 7px;
+  width: 100%;
+  background: linear-gradient(90deg, rgba(120,1,22,1) 0%, rgba(242,84,48,1) 100%);
+  z-index: 2;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-shadow: 0 3px 3px rgba(0,0,0,.3);
+}
+
+
+.tippy-popper .sub-head{
+font-size: 12px;
+margin-top: 3px;
+}
+
+.tippy-popper .et_pb_module{
+}
+
+.tippy-popper .et_pb_module:hover {
+  letter-spacing: 0;
+}
+
+.tippy-popper .nav-icon{
+  position: absolute;
+  bottom: 0;
+}
+
+.tippy-popper .nav-icon:after{
+  font-family: ETmodules;
+content: "5";
+font-size: 16px;
+top: 3px;
+  position: relative;
+}
+
+
+.tippy-popper .et_pb_module:hover .nav-icon:after{
+  color: #f25430;
+}
+
+#top-menu .mega-menu[aria-expanded="true"] a{
+
+  color: #f25430 !important;
+}
+
+
+
+/* disable normal dropdowns for mega menu items */
+
+@media screen and (min-width: 981px){
+  .mega-menu .sub-menu{
+    display: none;
+  }
+}
+
+
+/* disable mega menu on mobile */
+@media screen and (max-width: 980px){
+  .tippy-popper{
+    display: none !important;
+}
+}
+
+/* Desktop Nav - hide drop downs */
+#top-menu .sub-menu {
+  display: none;
+}
+
+
+/* Mobile Menu*/
+#mobile_menu:before{
+    content: "";
+  height: 7px;
+  width: 100%;
+  background: linear-gradient(90deg, rgba(120,1,22,1) 0%, rgba(242,84,48,1) 100%);
+  z-index: 2;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#mobile_menu{
+border-top: none;
+}
+
+
+
+/* Blog Posts */
+.et_monarch .et_pb_section .et_social_inline_top, .et_monarch .et_pb_section .et_social_inline_bottom{
+margin-bottom: 0;
+}
+
+.et_monarch .et_social_networks.et_social_circle li{
+  margin-bottom: 0 !important;
+}
+
+/* Table of Contents Link hover color */
+.single .et_pb_sticky_module a:hover{
+  color: #001133 !important;
+}
+
+/* Bullets / Ordered List Styles */
+#main-content ol{
+list-style-position: outside;
+}
+
+#main-content ul{
+  list-style: square;
+}
+
+#main-content .et_pb_text ol li{
+margin-left: 2em;
+padding-bottom: 1em;}
+
+#main-content .et_pb_text ol li:last-child{
+padding-bottom: 0;}
+
+#main-content .et_pb_text ul li{
+margin-left: 1em;
+padding-bottom: 1em;}
+
+
+#main-content .et_pb_text ul li:last-child{
+padding-bottom: 0;
+}
+
+#main-content .et_pb_text ul li:first-child{
+padding-top: 1em;
+}
+
+#main-content .et_pb_text ul li ul li{
+  list-style: circle;
+}
+
+#main-content .et_pb_text ul:last-child{
+padding-bottom: 0;
+}
+
+#main-content .et_pb_text ul ul,
+#main-content .et_pb_text ol ul,
+#main-content .et_pb_text ol ol,
+#main-content .et_pb_text ul ol{
+margin-bottom: 0;
+padding-bottom: 0;
+}
+
+.bold-numbers ol {
+  list-style: none;
+  counter-reset: my-awesome-counter;
+}
+.bold-numbers ol > li {
+  counter-increment: my-awesome-counter;
+ list-style: none;
+}
+.bold-numbers ol > li::before {
+  content: counter(my-awesome-counter) ". ";
+  font-weight: bold;
+  position: absolute;
+  left: 1em;
+}
+
+.bold-numbers ol > li ol > li::before {
+  left: 3em;
+}
+
+/* Scroll to Top */
+.et_pb_scroll_top.et_pb_scroll_top{
+background: #f25430;
+border-radius: 0;
+}
+
+
+/* Footer */
+.et-l--footer:before{
+  content: "";
+  height: 7px;
+  width: 100%;
+  background: linear-gradient(90deg, rgba(120,1,22,1) 0%, rgba(242,84,48,1) 100%);
+  z-index: 2;
+  display: block;
+  position: absolute;
+}
+
+.et-l--footer{
+position: relative;
+}
+
+.sub-menu-nav{
+max-width:510px;
+margin: 0 auto;}
+
+.sub-menu-nav a{
+padding: 0 30px;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.sub-menu-nav a:not(:last-child){
+  border-right: 1px solid #ffffff;
+}
+
+.et-l--footer .et_pb_code{
+margin-bottom: 0 !important;
+}
+
+@media screen and (max-width: 600px){
+  .sub-menu-nav a:not(:last-child){
+    border: none;
+  }
+
+  .sub-menu-nav a{
+    display: block;
+    text-align: center;
+  }
+}
+
+.et-l--footer .et_pb_social_media_follow_network_0_tb_footer a.icon,
+.et-l--footer .et_pb_social_media_follow_network_1_tb_footer a.icon
+{
+background-color: transparent !important;
+}
+
+.et-l--footer .et_pb_social_media_follow_0_tb_footer li a.icon,
+.et-l--footer .et_pb_social_media_follow_0_tb_footer li a.icon:before
+{
+  width: 30px;
+}
+
+.et-l--footer .et_pb_row_5col{
+display: flex;
+flex-flow: row wrap;
+justify-content: space-between;
+}
+
+.et-l--footer .et_pb_column_1_5{
+flex: 1 1 auto;
+width: auto !important;
+margin-bottom: 40px;
+}
+
+.et-l--footer .et_pb_column_1_5:not(:last-child){
+padding-right: 20px;}
+
+.et-l--footer a:hover{
+  width: 100%;
+  opacity: .7;
+}
+
+
+/* animation classes */
+.hover-scale a{
+  transition: all .2s ease-out;
+  display: inline-block;
+}
+
+.hover-scale a:hover{
+  transform: scale(1.1);
+}
+
+/* Animation Classes */
+.fade-in{
+ opacity: 0;
+ transition: all .5s ease-in;
+}
+
+.fade-in.animate-in{
+  opacity: 1;
+}
+
+.slide-left{
+  position: relative;
+  left: -80px;
+  transition: all .5s ease-in;
+}
+
+.slide-left.animate-in{
+  left: 0;
+}
+
+.slide-right{
+  position: relative;
+  right: -80px;
+  transition: all .5s ease-in;
+}
+
+.slide-right.animate-in{
+  right: 0;
+}
+
+.slide-up{
+  position: relative;
+  bottom: -30px;
+  transition: all .5s ease-in;
+}
+
+.slide-up.animate-in{
+  bottom: 0;
+}
+
+/* style classes */
+.video-background-fix  .et_pb_section_video_bg{
+  opacity: 0;
+}
+
+.video-background-fix.et_had_animation .et_pb_section_video_bg{
+  opacity: 1;
+}
+
+
+.home{
+  background-color: #000;
+}
