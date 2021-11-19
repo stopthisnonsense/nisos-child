@@ -28,61 +28,61 @@ add_action('wp_footer', 'library_redirect');
 
 
 add_shortcode( 'vimeo_video_player', 'vimeo_video_player_shortcode' );
-function vimeo_video_player_shortcode( $atts ) 
+function vimeo_video_player_shortcode( $atts )
 {
 	$videoCode = '';
-	
+
 	global $post;
-	
+
 	$params = array(
         'where'   => 't.ID = ' . $post->ID,
-        'limit'   => 1  
+        'limit'   => 1
     );
-	
+
 	$podcast = pods('podcast', $params);
 	if($atts['type'] == 'video')
 	{
 		$podcast = pods('video', $params);
 	}
-	 
+
 	$videoLink = "";
-    if ($podcast->total() > 0) 
+    if ($podcast->total() > 0)
 	{
-        while ($podcast->fetch()) 
+        while ($podcast->fetch())
 		{
 			$videoLink = $podcast->display('video_url');
 		}
 	}
-	
+
 	$videoScript = "https://www.nisos.com/videojs/";
 
-	
-	if(strpos($videoLink, 'youtube') !== false) 
+
+	if(strpos($videoLink, 'youtube') !== false)
 	{
 		$videoCode = '<iframe width="560" height="315" src="'.$videoLink.'" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
     }
-	else 
+	else
 	{
-		$videoCode .= '<link href="'.$videoScript.'node_modules/video.js/dist/video-js.css" rel="stylesheet">';	
-		$videoCode .= '<div class="videoContainer"><video id="videoPlayer" class="video-js" data-setup=\'{ "techOrder": ["vimeo"], "sources": [{ "type": "video/vimeo", "src": "'.$videoLink.'"}], "vimeo": { "color": "#fbc51b"} }\'></video></div>';	
+		$videoCode .= '<link href="'.$videoScript.'node_modules/video.js/dist/video-js.css" rel="stylesheet">';
+		$videoCode .= '<div class="videoContainer"><video id="videoPlayer" class="video-js" data-setup=\'{ "techOrder": ["vimeo"], "sources": [{ "type": "video/vimeo", "src": "'.$videoLink.'"}], "vimeo": { "color": "#fbc51b"} }\'></video></div>';
 		$videoCode .= '<script src="'.$videoScript.'node_modules/video.js/dist/video.js"></script>';
 		$videoCode .= '<script src="'.$videoScript.'dist/videojs-vimeo.js"></script>';
-		
+
 	}
-	
+
     return $videoCode;
 }
 
 
 add_shortcode( 'podcast_list', 'podcast_list_shortcode' );
-function podcast_list_shortcode( $atts ) 
+function podcast_list_shortcode( $atts )
 {
 	$podcasts = "";
-	
+
 	$params = array(
         'where'   => 'podcast_category.slug = "'.$atts['category'].'"',
         'orderby'   => 'episode_date.meta_value DESC',
-        'limit'   => 10 
+        'limit'   => 10
     );
 
     $podcastList = pods('podcast', $params);
@@ -90,39 +90,39 @@ function podcast_list_shortcode( $atts )
     if ($podcastList->total() > 0) {
 		$podcasts .= '<div class="podcasts-archive-container">';
 		$podcasts .= '<div class="podcasts-container">';
-        while ($podcastList->fetch()) 
+        while ($podcastList->fetch())
 		{
-			
+
 			$podcasts .= '<div class="podcast-item">';
-			$podcasts .= '	<div class="podcast-episode"><a href="'.$podcastList->display('permalink').'">Episode ' . $podcastList->display('episode') . '<img class="play-icon" src="https://nisosdev.wpengine.com/wp-content/uploads/2021/08/noun_play_4177562.png" /></a></div>';
-			
+			$podcasts .= '	<div class="podcast-episode"><a href="'.$podcastList->display('permalink').'">Episode ' . $podcastList->display('episode') . '<img class="play-icon" src="' . get_stylesheet_directory_uri() . '/images/play.png" /></a></div>';
+
 			$createTitle = wp_strip_all_tags($podcastList->display('post_title'));
 			if(strlen($createTitle) > 90)
 			{
 				$createTitle = substr($createTitle, 0, 90) . '...';
 			}
-			
+
 			$podcasts .= '	<div class="podcast-title"><a href="'.$podcastList->display('permalink').'">' . $createTitle . '</a></div>';
-			
+
 			$createExcerpt = wp_strip_all_tags($podcastList->display('post_content'));
 			$createExcerpt = substr($createExcerpt, 0, 115);
 			$podcasts .= '	<div class="podcast-excerpt">' . $createExcerpt . '...</div>';
-			
+
 			$podcasts .= '	<div class="podcast-date">' . $podcastList->display('episode_date') . '</div>';
 			$podcasts .= '	<div class="podcast-bar"> | </div>';
 			$podcasts .= '	<div class="podcast-length">' . ($podcastList->display('length') != '' ? $podcastList->display('length') : '1') . ' min</div>';
-			
-			$podcasts .= '	<div class="podcast-cc">' . ($podcastList->display('show_cc') == 'Yes' ? '<img src="https://nisosdev.wpengine.com/wp-content/uploads/2021/08/noun_Subtitles_713226.png" title="Closed Captioned" alt="Closed Captioned" />' : '') . '</div>';
-			$podcasts .= '	<div class="podcast-transcript">' . ($podcastList->display('show_transcription') == 'Yes' ? '<img src="https://nisosdev.wpengine.com/wp-content/uploads/2021/08/noun_Speech-to-text_1425923.png" title="Transcription" alt="Transcription" />' : '') . '</div>'; 
- 
+
+			$podcasts .= '	<div class="podcast-cc">' . ($podcastList->display('show_cc') == 'Yes' ? '<img src="' . get_stylesheet_directory_uri() . '/images/subtitle.png" title="Closed Captioned" alt="Closed Captioned" />' : '') . '</div>';
+			$podcasts .= '	<div class="podcast-transcript">' . ($podcastList->display('show_transcription') == 'Yes' ? '<img src="' . get_stylesheet_directory_uri() . '/images/transcription.png" title="Transcription" alt="Transcription" />' : '') . '</div>';
+
 			$podcasts .= '</div>';
         }
 		$podcasts .= '</div>';
 		$podcasts .= $podcastList->pagination(array('type' => 'simple' , 'prev_text' => 'Previous', 'next_text' => 'Next'));
 		$podcasts .= '</div>';
-		
+
     }
-	
+
     return $podcasts;
 }
 
@@ -154,7 +154,7 @@ add_action( 'et_builder_ready', 'divi_custom_blog_module' );
 ================================================*/
 
 if( function_exists('acf_add_options_page') ) {
-	
+
 	acf_add_options_page(array(
 		'page_title' 	=> 'Site Options',
 		'menu_title'	=> 'Site Options',
@@ -162,7 +162,7 @@ if( function_exists('acf_add_options_page') ) {
 		'capability'	=> 'edit_posts',
 		'redirect'		=> false
 	));
-	
+
 }
 
 /*================================================
@@ -172,15 +172,15 @@ if( function_exists('acf_add_options_page') ) {
 ================================================*/
 
 function podcast_service_icon_function( $atts = array() ) {
-	
+
 	$links = get_field('podcast_links', 'option');
-	
+
 	extract(shortcode_atts(array(
       'service' => ''
     ), $atts));
-	
+
 	$serviceIcon = $links[$service];
-    return '<a href="' . $serviceIcon['link'] . '"><img src="' . $serviceIcon['icon']['url'] . '" 
+    return '<a href="' . $serviceIcon['link'] . '"><img src="' . $serviceIcon['icon']['url'] . '"
 	alt="' . $serviceIcon['icon']['alt'] . '" width="35" height="35" class="alignnone size-full" /></a>';
-	
+
 } add_shortcode('podcasticon', 'podcast_service_icon_function');
