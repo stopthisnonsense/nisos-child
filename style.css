@@ -235,7 +235,9 @@
 }
 
 #main-content .et_pb_text ul li:first-child,
-#main-content .et_pb_post_content ul li:first-child {
+#main-content .et_pb_post_content ul li:first-child,
+#main-content .et_pb_text ol li:first-child,
+#main-content .et_pb_post_content ol li:first-child {
 	padding-top: 1em;
 }
 
